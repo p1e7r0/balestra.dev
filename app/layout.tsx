@@ -27,7 +27,7 @@ const spaceGrotesk = Space_Grotesk({
 const SITE_URL = "https://balestra.dev";
 const SITE_TITLE = "Pietro Balestra — Senior Software Engineer · Switzerland";
 const SITE_DESCRIPTION =
-  "Senior software engineer based in Ticino, Switzerland. 11+ years shipping TypeScript/React and Java/Spring Boot in a microservices + microfrontend platform at EOC healthcare. Mobile, computer vision, AR, robotics.";
+  "Senior software engineer based in Ticino, Switzerland. 11+ years shipping TypeScript/React and Java/Spring Boot in a microservices + microfrontends platform at EOC healthcare. Mobile, computer vision, AR, robotics.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

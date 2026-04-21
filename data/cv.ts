@@ -51,7 +51,7 @@ export const identity = {
   idLine: "ID//CH-1991-07-01",
   affiliation: "CH / SUPSI ALUMNI",
   tagline:
-    "Senior software engineer at EOC since 2019, shipping TypeScript/React front ends and Java/Spring Boot services in a microservices + microfrontend architecture for Swiss healthcare. In parallel, founder & CTO of Rentobuy.ch.",
+    "Senior software engineer at EOC since 2019, shipping TypeScript/React front ends and Java/Spring Boot services in a microservices + microfrontends architecture for Swiss healthcare. In parallel, founder & CTO of Rentobuy.ch.",
 };
 
 export const stackItems: StackItem[] = [
@@ -80,7 +80,7 @@ export const domains: DomainCard[] = [
     icon: "◆",
     title: "Healthcare Platforms",
     description:
-      "Production clinical systems for a Swiss cantonal hospital group since 2019. Patient admission and discharge, ward management, billing, clinical coding — delivered as microservices behind a microfrontend shell.",
+      "Production clinical systems for a Swiss cantonal hospital group since 2019. Patient admission and discharge, ward management, billing, clinical coding — delivered as microservices behind a microfrontends shell.",
   },
   {
     icon: "◎",
@@ -134,7 +134,7 @@ export const experience: ExperienceEntry[] = [
     title: "Software Engineer",
     company: "EOC — Ente Ospedaliero Cantonale",
     address: "Ticino, Switzerland",
-    role: "Full-stack engineering inside a microservices / microfrontend platform. TypeScript + React on the front; Java + Spring Boot services on the back. Production healthcare systems, distributed architecture, continuous delivery.",
+    role: "Full-stack engineering inside a microservices / microfrontends platform. TypeScript + React on the front; Java + Spring Boot services on the back. Production healthcare systems, distributed architecture, continuous delivery.",
     stack: [
       { label: "TypeScript" },
       { label: "React" },
@@ -317,9 +317,9 @@ export const bootLines: Array<{ html: string; delay: number }> = [
   },
   { html: "      name    : Pietro Balestra", delay: 70 },
   { html: "      nation  : Swiss / Ticino", delay: 70 },
-  { html: "      edu     : M.Sc. ICT — SUPSI '14", delay: 80 },
+  { html: "      edu     : B.Sc. ICT — SUPSI '14", delay: 80 },
   {
-    html: "      domain  : healthcare / microfrontends / cv / robotics / product",
+    html: "      domain  : healthcare / microfrontends / microservices / computer vision / robotics",
     delay: 80,
   },
   {

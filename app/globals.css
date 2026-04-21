@@ -576,7 +576,7 @@ section.hero {
 
 /* Section wrapper */
 section.hud {
-  padding: 28px 28px 40px;
+  padding: 44px 28px 40px;
   border-top: 1px dashed var(--hair);
   position: relative;
 }
@@ -1198,10 +1198,14 @@ footer b {
     z-index: 30;
     height: auto;
     padding: 10px 14px;
-    gap: 10px;
+    gap: 10px 16px;
     background: #000;
     border-right: none;
     border-bottom: 1px solid var(--hair);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
   }
   aside .sb-block:nth-of-type(n + 2),
   aside nav .sb-title,
@@ -1217,9 +1221,6 @@ footer b {
   }
   .logo small {
     display: none;
-  }
-  nav {
-    margin-top: -4px;
   }
   nav ol {
     flex-direction: row;
@@ -1285,22 +1286,14 @@ footer b {
     font-size: 9px;
   }
 
-  /* Boot terminal */
+  /* Boot terminal — hidden on mobile */
   .boot {
-    max-height: 260px;
-  }
-  .boot .panel-body {
-    font-size: 11px;
-    padding: 12px 14px;
-  }
-  .boot .line .bar {
-    width: 90px;
-    margin: 0 6px;
+    display: none;
   }
 
   /* Section wrapper */
   section.hud {
-    padding: 24px 16px 28px;
+    padding: 36px 16px 28px;
   }
   section.hud::before {
     left: 16px;
@@ -1460,6 +1453,13 @@ footer b {
     opacity: 0.4;
   }
   .crt-flicker {
+    display: none;
+  }
+}
+
+/* Below this width the logo + nav no longer fit on one row — drop the logo */
+@media (max-width: 560px) {
+  aside > .sb-block:first-of-type {
     display: none;
   }
 }

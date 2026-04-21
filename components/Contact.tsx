@@ -22,12 +22,12 @@ export function Contact() {
             Open<span className="g">.</span>channel<span className="g">_</span>
           </h2>
           <p className="sig">
-            Consulting, engineering work, R&amp;D in mobile / CV / robotics — inbox is monitored
-            from Semetina, CH. Keys exchanged on request.
+            Consulting and engineering work on healthcare platforms, microfrontend / microservices
+            architecture.
           </p>
 
           <div className="cta-row">
-            <GlitchHeading as="a" className="cta primary" href={`mailto:${identity.email}`}>
+            <GlitchHeading as="a" className="cta" href={`mailto:${identity.email}`}>
               <span>▸</span>
               <span>mail // {identity.email}</span>
               <span className="k">[M]</span>
@@ -37,11 +37,11 @@ export function Contact() {
               <span>dial // {identity.phone}</span>
               <span className="k">[P]</span>
             </GlitchHeading>
-            <GlitchHeading as="a" className="cta" href="/cv.pdf">
+            {/* <GlitchHeading as="a" className="cta" href="/cv.pdf">
               <span>▸</span>
               <span>download // cv.pdf</span>
               <span className="k">[D]</span>
-            </GlitchHeading>
+            </GlitchHeading> */}
           </div>
         </div>
 
