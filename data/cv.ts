@@ -1,4 +1,6 @@
-export type StackLanguage = { name: string; percent: number };
+export type StackTier = "primary" | "supporting" | "legacy";
+
+export type StackItem = { name: string; percent: number; tier: StackTier };
 
 export type DomainCard = { icon: string; title: string; description: string };
 
@@ -15,6 +17,7 @@ export type ExperienceEntry = {
   sideLabelColor?: "accent" | "warn" | "dim";
   title: string;
   company: string;
+  address: string;
   role: string;
   stack: Array<{ label: string; alt?: boolean }>;
   dim?: boolean;
@@ -33,7 +36,7 @@ export const identity = {
   name: "Pietro Balestra",
   handle: "BALESTRA.DEV",
   title: "Software Engineer",
-  scope: "Mobile + CV + Robotics",
+  scope: "Microfrontend & Microservices Architecture in Healthcare Platforms",
   coordinates: "46.0488°N / 8.9417°E",
   locationCode: "CH-TI",
   domicile: "Sementina",
@@ -48,53 +51,54 @@ export const identity = {
   idLine: "ID//CH-1991-07-01",
   affiliation: "CH / SUPSI ALUMNI",
   tagline:
-    "Senior software engineer operating at the seam of healthcare platforms. Shipping TypeScript/React front ends and Java/Spring Boot services in a microservices + microfrontend architecture at EOC since 2019.",
+    "Senior software engineer at EOC since 2019, shipping TypeScript/React front ends and Java/Spring Boot services in a microservices + microfrontend architecture for Swiss healthcare. In parallel, founder & CTO of Rentobuy.ch.",
 };
 
-export const kpis = [
-  { label: "Years.active", value: "11", unit: "y", caption: "since '13" },
-  { label: "Languages", value: "14", unit: "+", caption: "TS to C" },
-  { label: "Engagements", value: "07", unit: "", caption: "2013 → now" },
-  { label: "Award", value: "01", unit: "", caption: "SWEN '15" },
+export const stackItems: StackItem[] = [
+  { name: "TypeScript / React", percent: 95, tier: "primary" },
+  { name: "Java / Spring Boot", percent: 90, tier: "primary" },
+  { name: "Module Federation 2.0", percent: 90, tier: "primary" },
+  { name: "Next.js", percent: 80, tier: "primary" },
+  { name: "Electron", percent: 75, tier: "primary" },
+  { name: "JavaScript", percent: 90, tier: "supporting" },
+  { name: "HTML / CSS", percent: 88, tier: "supporting" },
+  { name: "SQL", percent: 82, tier: "supporting" },
+  { name: "C / C++", percent: 80, tier: "legacy" },
 ];
 
-export const stackLanguages: StackLanguage[] = [
-  { name: "TypeScript / React", percent: 95 },
-  { name: "Java / Spring Boot", percent: 93 },
-  { name: "C / C++", percent: 88 },
-  { name: "JavaScript", percent: 90 },
-  { name: "Qt", percent: 80 },
-  { name: "HTML / CSS", percent: 88 },
-  { name: "SQL", percent: 82 },
-  { name: "C#", percent: 72 },
-  { name: "Python", percent: 70 },
-  { name: "Jira", percent: 65 },
-];
+const ACTIVE_SINCE_YEAR = 2015;
+const ACTIVE_SINCE_MONTH = 10;
+
+function computeYearsActive(): number {
+  const now = new Date();
+  const years = now.getFullYear() - ACTIVE_SINCE_YEAR;
+  return now.getMonth() + 1 < ACTIVE_SINCE_MONTH ? years - 1 : years;
+}
 
 export const domains: DomainCard[] = [
   {
     icon: "◆",
-    title: "Mobile",
+    title: "Healthcare Platforms",
     description:
-      "Native Android/Java pipelines. Field-grade clients, offline sync, background services, OTA updates.",
+      "Production clinical systems for a Swiss cantonal hospital group since 2019. Patient admission and discharge, ward management, billing, clinical coding — delivered as microservices behind a microfrontend shell.",
   },
   {
     icon: "◎",
-    title: "Computer Vision",
+    title: "Microfrontend Architecture",
     description:
-      "Machine-vision loop for robotic weld torches. Real-time image analysis, calibration, fiducial tracking.",
+      "Module Federation 2.0 at production scale. Compatibility enforcement, resiliency, caching, dynamic remote loading — the unglamorous tooling that keeps a multi-team federated frontend from breaking in production.",
   },
   {
     icon: "◈",
-    title: "AR / Tracking",
+    title: "Computer Vision & Robotics",
     description:
-      "Marker + markerless AR overlays for industrial HMIs. Sensor fusion and pose estimation.",
+      "R&D roots in image analysis, AR, and machine vision — from intelligent video surveillance to closed-loop vision driving a robotic welding torch. Hands-on with C/C++, real-time actuation, and calibration pipelines.",
   },
   {
     icon: "◇",
-    title: "Web Services",
+    title: "Founder-mode Product",
     description:
-      "Java EE + Spring back ends. REST surfaces, auth, deployment pipelines, database modeling.",
+      "Founder & CTO of Rentobuy.ch — a rent-to-buy real estate platform for the Italian-Swiss market. Owning product shape, Next.js architecture, SEO-driven acquisition, and Swiss legal framing (CO Art. 216/216a) end to end.",
   },
 ];
 
@@ -110,12 +114,16 @@ export const experience: ExperienceEntry[] = [
     dateRange: "[2025.10 → NOW]",
     sideLabel: "● ACTIVE",
     sideLabelColor: "warn",
-    title: "Rentobuy.ch",
-    company: "Switzerland · Chief Technology Officer",
-    role: "Technology lead for rentobuy.ch. Owning architecture, platform direction, and engineering practice from the ground up.",
+    title: "Founder & CTO",
+    company: "Rentobuy.ch",
+    address: "Switzerland",
+    role: "Rent-to-buy real estate platform for the Italian-Swiss market. Owning product, architecture, and engineering. Swiss legal framework (CO Art. 216/216a), SEO-driven acquisition, Next.js platform.",
     stack: [
-      { label: "CTO", alt: true },
-      { label: "Platform", alt: true },
+      { label: "Next.js" },
+      { label: "React" },
+      { label: "TypeScript" },
+      { label: "SEO", alt: true },
+      { label: "Founder", alt: true },
       { label: "Architecture", alt: true },
     ],
   },
@@ -123,8 +131,9 @@ export const experience: ExperienceEntry[] = [
     dateRange: "[2019.01 → NOW]",
     sideLabel: "● ACTIVE",
     sideLabelColor: "warn",
-    title: "EOC — Ente Ospedaliero Cantonale",
-    company: "Ticino, Switzerland · Software Engineer",
+    title: "Software Engineer",
+    company: "EOC — Ente Ospedaliero Cantonale",
+    address: "Ticino, Switzerland",
     role: "Full-stack engineering inside a microservices / microfrontend platform. TypeScript + React on the front; Java + Spring Boot services on the back. Production healthcare systems, distributed architecture, continuous delivery.",
     stack: [
       { label: "TypeScript" },
@@ -136,13 +145,14 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    dateRange: "[2017.09 → 2020]",
+    dateRange: "[2017.09 → 2021.12]",
     sideLabel: "~3 YR",
-    title: "Ander Group SA",
-    company: "Agno, Switzerland · Freelance Software Engineer",
-    role: "Mobile application engineering on a freelance contract. Built Java EE back ends and web front ends against established product pipelines.",
+    title: "Freelance Software Engineer",
+    company: "Ander Group SA",
+    address: "Agno, Switzerland",
+    role: "Mobile application engineering on a freelance contract. Built Java back ends and web front ends against established product pipelines.",
     stack: [
-      { label: "Java EE" },
+      { label: "Java" },
       { label: "JavaScript" },
       { label: "HTML" },
       { label: "CSS" },
@@ -152,8 +162,9 @@ export const experience: ExperienceEntry[] = [
   {
     dateRange: "[2017.06 → 2017.10]",
     sideLabel: "05 MO",
-    title: "Globotics SA",
-    company: "Bellinzona, Switzerland · R&D Engineer",
+    title: "Summer R&D Engineer — Machine Vision",
+    company: "Globotics SA",
+    address: "Bellinzona, Switzerland",
     role: "R&D on a machine-vision system driving a robotic welding torch. Closed-loop image analysis, calibration, and real-time actuation.",
     stack: [
       { label: "C" },
@@ -165,12 +176,12 @@ export const experience: ExperienceEntry[] = [
   {
     dateRange: "[2015.10 → 2017.08]",
     sideLabel: "~2 YR",
-    title: "Goodcode GmbH",
-    company: "Agno, Switzerland · Software Engineer / Project Manager",
-    role: "Led development on mobile, augmented-reality, and computer-vision projects. Planned sprints, owned architecture, and wrote production code across Java, C/C++, and JS/HTML/CSS. Full-stack mobile delivery with Java EE services and release coordination.",
+    title: "Software Engineer / Project Manager",
+    company: "Goodcode GmbH",
+    address: "Agno, Switzerland",
+    role: "Led development on mobile, augmented-reality, and computer-vision projects. Planned sprints, owned architecture, and wrote production code across Java, C/C++, and JS/HTML/CSS. Full-stack mobile delivery with Java services and release coordination.",
     stack: [
       { label: "Java" },
-      { label: "Java EE" },
       { label: "C" },
       { label: "C++" },
       { label: "JavaScript" },
@@ -184,8 +195,9 @@ export const experience: ExperienceEntry[] = [
   {
     dateRange: "[2013.06 → 2013.09]",
     sideLabel: "04 MO",
-    title: "SarMAP",
-    company: "Purasca, Switzerland · Internship",
+    title: "Research Intern",
+    company: "SarMAP",
+    address: "Purasca, Switzerland",
     role: "Scientific software internship — geospatial / remote-sensing workflows.",
     stack: [{ label: "C++" }, { label: "IDL" }],
     dim: true,
@@ -193,8 +205,9 @@ export const experience: ExperienceEntry[] = [
   {
     dateRange: "[2006.09 → 2010.06]",
     sideLabel: "04 YR",
-    title: "SAMB — Scuola d'Arte e Mestieri",
-    company: "Bellinzona, Switzerland · Operatore in automazione",
+    title: "Operatore in automazione",
+    company: "SAMB — Scuola d'Arte e Mestieri",
+    address: "Bellinzona, Switzerland",
     role: "Automation-technician training. Hands-on foundation across PLCs, electronics, and control systems — the bedrock under every line of code since.",
     stack: [
       { label: "Automation", alt: true },
@@ -206,19 +219,34 @@ export const experience: ExperienceEntry[] = [
 ];
 
 export const education: EducationCard[] = [
-  {
-    badge: "M.Sc.",
-    dateRange: "[2014.09]",
-    title: "M.Sc. Engineering — ICT",
-    institution: "SUPSI // DTI — Manno, Switzerland",
-    detail: "Info & Communication Technologies",
-  },
+  // {
+  //   badge: "M.Sc.",
+  //   dateRange: "[2014.09]",
+  //   title: "M.Sc. Engineering — ICT",
+  //   institution: "SUPSI // DTI — Manno, Switzerland",
+  //   detail: "Info & Communication Technologies",
+  // },
   {
     badge: "B.Sc.",
     dateRange: "[2011.09 → 2014.06]",
     title: "B.Sc. Ingegneria Informatica",
     institution: "SUPSI // DTI — Manno, Switzerland",
-    detail: "Computer Engineering",
+    detail: "Software Engineering",
+  },
+  {
+    badge: "AFC",
+    dateRange: "[2006.09 → 2010.06]",
+    title: "Operatore in Automazione — AFC",
+    institution: "Scuola d'Arte e Mestieri — Bellinzona, Switzerland",
+    detail: "Federal Automation Technician Certificate",
+    // span: true,
+  },
+  {
+    badge: "CRS",
+    dateRange: "[2021.03]",
+    title: "Spring Boot Training",
+    institution: "42talents GmbH",
+    detail: "Professional training — Spring Boot",
   },
   {
     badge: "CERT",
@@ -227,21 +255,13 @@ export const education: EducationCard[] = [
     institution: "English Language Center — Vancouver, CA",
     detail: "Level B2 // Cambridge FCE",
   },
-  {
-    badge: "MPT",
-    dateRange: "[2010.09 → 2011.06]",
-    title: "Maturità Professionale Tecnica",
-    institution: "CPQ — Trevano, Switzerland",
-    detail: "Technical Vocational Maturity",
-  },
-  {
-    badge: "AFC",
-    dateRange: "[2006.09 → 2010.06]",
-    title: "Operatore in Automazione — AFC",
-    institution: "Scuola d'Arte e Mestieri — Bellinzona, Switzerland",
-    detail: "Federal Automation Technician Certificate",
-    span: true,
-  },
+  // {
+  //   badge: "MPT",
+  //   dateRange: "[2010.09 → 2011.06]",
+  //   title: "Maturità Professionale Tecnica",
+  //   institution: "CPQ — Trevano, Switzerland",
+  //   detail: "Technical Vocational Maturity",
+  // },
 ];
 
 export const award = {
@@ -251,6 +271,28 @@ export const award = {
     'Thesis: "Analisi di immagini per ambienti di videosorveglianza intelligenti" — Università della Svizzera Italiana (USI), Lugano',
   year: "2015",
 };
+
+export const kpis = [
+  {
+    label: "Years.active",
+    value: String(computeYearsActive()).padStart(2, "0"),
+    unit: "y",
+    caption: "since '15",
+  },
+  {
+    label: "Stack",
+    value: String(stackItems.length).padStart(2, "0"),
+    unit: "",
+    caption: "TS to C",
+  },
+  {
+    label: "Engagements",
+    value: String(experience.length).padStart(2, "0"),
+    unit: "",
+    caption: "2006 → now",
+  },
+  { label: "Award", value: "01", unit: "", caption: "awarded '15" },
+];
 
 export const bootLines: Array<{ html: string; delay: number }> = [
   {
@@ -276,13 +318,19 @@ export const bootLines: Array<{ html: string; delay: number }> = [
   { html: "      name    : Pietro Balestra", delay: 70 },
   { html: "      nation  : Swiss / Ticino", delay: 70 },
   { html: "      edu     : M.Sc. ICT — SUPSI '14", delay: 80 },
-  { html: "      domain  : healthcare / web / cv / ar / robotics", delay: 80 },
   {
-    html: '<span class="tag">[NET]</span> scanning stack ............................. <span class="bar"><span></span></span> <span class="ok">14 pkg</span>',
+    html: "      domain  : healthcare / microfrontends / cv / robotics / product",
+    delay: 80,
+  },
+  {
+    html: `<span class="tag">[NET]</span> scanning stack ............................. <span class="bar"><span></span></span> <span class="ok">${stackItems.length} pkg</span>`,
     delay: 140,
   },
   {
-    html: "      TS · React · Java · Spring Boot · C · C++ · Qt · JS · HTML · CSS · SQL · Py · C# · PHP",
+    html: `      ${stackItems
+      .filter((item) => item.tier !== "legacy")
+      .map((item) => item.name.split(" / ")[0])
+      .join(" · ")}`,
     delay: 80,
   },
   {

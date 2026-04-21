@@ -22,7 +22,7 @@ export function Hero() {
             <GlitchHeading className="g">BALESTRA</GlitchHeading>
             <span className="slash">_</span>
           </h1>
-          <div className="sub">&gt; Software Engineer // Mobile + CV + Robotics</div>
+          <div className="sub">&gt; Senior Software Engineer // Founder </div>
 
           <p className="tag">
             <span id="tagline">{identity.tagline}</span>

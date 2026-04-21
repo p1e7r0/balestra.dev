@@ -43,7 +43,12 @@ export function Experience() {
                     <span className="date">{entry.dateRange}</span>
                     <div>
                       <h3>{entry.title}</h3>
-                      <div className="co">{entry.company}</div>
+                      <div className="co">
+                        <span className="co-name">{entry.company}</span>
+                        {entry.address ? (
+                          <span className="co-address"> · {entry.address}</span>
+                        ) : null}
+                      </div>
                     </div>
                     <span className="date" style={sideColor ? { color: sideColor } : undefined}>
                       {entry.sideLabel}

@@ -30,16 +30,13 @@ export async function renderOgImage(): Promise<ImageResponse> {
     loadFont(JETBRAINS_MONO_BOLD_URL),
   ]);
 
-  return new ImageResponse(
-    <OgImageMarkup />,
-    {
-      ...ogImageSize,
-      fonts: [
-        { name: "JetBrains Mono", data: regular, weight: 400, style: "normal" },
-        { name: "JetBrains Mono", data: bold, weight: 700, style: "normal" },
-      ],
-    },
-  );
+  return new ImageResponse(<OgImageMarkup />, {
+    ...ogImageSize,
+    fonts: [
+      { name: "JetBrains Mono", data: regular, weight: 400, style: "normal" },
+      { name: "JetBrains Mono", data: bold, weight: 700, style: "normal" },
+    ],
+  });
 }
 
 function OgImageMarkup() {
@@ -139,11 +136,6 @@ function OgImageMarkup() {
           >
             SEMENTINA · TICINO · SWITZERLAND
           </div>
-        </div>
-
-        <div style={{ display: "flex", gap: 20 }}>
-          <OgImageKpi label="YEARS.ACTIVE" value="11" unit="y" caption="since '13" />
-          <OgImageKpi label="LANGUAGES" value="14" unit="+" caption="TS to C" />
         </div>
 
         <div

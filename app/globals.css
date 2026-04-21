@@ -797,9 +797,18 @@ section.hud::before {
   color: var(--ink);
 }
 .tl-item .co {
-  color: var(--ink-dim);
   font-size: 12px;
   letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+.tl-item .co-name {
+  color: var(--ink);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.tl-item .co-address {
+  color: var(--ink-dim);
 }
 .tl-item .role {
   color: var(--ink-dim);
@@ -1127,16 +1136,21 @@ footer b {
   font-variant-numeric: tabular-nums;
 }
 
-/* Responsive */
+/* ── Responsive ── */
+
+/* Mobile & tablet (≤980px) */
 @media (max-width: 980px) {
+  :root {
+    --row: 38px;
+  }
+  html,
+  body {
+    font-size: 13px;
+  }
+
+  /* Frame / layout collapse */
   .frame {
     grid-template-columns: 1fr;
-  }
-  aside {
-    position: static;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--hair);
   }
   section.hero {
     grid-template-columns: 1fr;
@@ -1155,5 +1169,317 @@ footer b {
   }
   .kpis {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Chrome top — keep essentials only */
+  .chrome-top {
+    padding: 0 10px;
+    height: 30px;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    overflow: hidden;
+  }
+  .chrome-top .left {
+    gap: 10px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .chrome-top .right {
+    display: none;
+  }
+
+  /* Sidebar → compact top strip (logo + horizontal nav only) */
+  aside {
+    position: sticky;
+    top: 30px;
+    z-index: 30;
+    height: auto;
+    padding: 10px 14px;
+    gap: 10px;
+    background: #000;
+    border-right: none;
+    border-bottom: 1px solid var(--hair);
+  }
+  aside .sb-block:nth-of-type(n + 2),
+  aside nav .sb-title,
+  aside .mini-map,
+  aside .sb-footer {
+    display: none;
+  }
+  aside > .sb-block:first-of-type {
+    padding-right: 0;
+  }
+  .logo {
+    font-size: 18px;
+  }
+  .logo small {
+    display: none;
+  }
+  nav {
+    margin-top: -4px;
+  }
+  nav ol {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  nav a {
+    grid-template-columns: auto;
+    gap: 0;
+    padding: 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--hair);
+    border-left: 1px solid var(--hair);
+  }
+  nav a .n,
+  nav a .k {
+    display: none;
+  }
+  nav a.active {
+    border-color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(0, 255, 102, 0.08);
+  }
+
+  /* Hero */
+  section.hero {
+    padding: 16px;
+    gap: 14px;
+    min-height: auto;
+  }
+  .ident {
+    padding: 22px 18px 20px;
+  }
+  .ident .meta {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 9px;
+    margin-bottom: 14px;
+  }
+  .ident .sub {
+    font-size: 12px;
+  }
+  .ident .tag {
+    font-size: 13px;
+    margin-top: 14px;
+  }
+
+  /* KPIs */
+  .kpi {
+    padding: 10px 12px;
+  }
+  .kpi .v {
+    font-size: 26px;
+  }
+  .kpi .v .u {
+    font-size: 11px;
+  }
+  .kpi .l {
+    font-size: 8px;
+  }
+  .kpi .s {
+    font-size: 9px;
+  }
+
+  /* Boot terminal */
+  .boot {
+    max-height: 260px;
+  }
+  .boot .panel-body {
+    font-size: 11px;
+    padding: 12px 14px;
+  }
+  .boot .line .bar {
+    width: 90px;
+    margin: 0 6px;
+  }
+
+  /* Section wrapper */
+  section.hud {
+    padding: 24px 16px 28px;
+  }
+  section.hud::before {
+    left: 16px;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  /* Panel head */
+  .panel-head {
+    padding: 8px 12px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    gap: 8px;
+  }
+  .panel-head .tags {
+    gap: 8px;
+    font-size: 9px;
+  }
+  .panel-body {
+    padding: 16px 14px;
+  }
+
+  /* Skills: stack list — drop meter, keep name + percent */
+  .stack-list .row {
+    grid-template-columns: 26px 1fr 44px;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+  .stack-list .row .meter {
+    display: none;
+  }
+
+  /* Skills: domain & lang panels */
+  .domain-grid {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+  .domain {
+    padding: 12px;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 22px;
+  }
+  .timeline::before {
+    left: 6px;
+  }
+  .tl-item {
+    padding: 14px 0 18px;
+  }
+  .tl-item::before {
+    left: -20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+  }
+  .tl-item .head {
+    gap: 4px;
+  }
+  .tl-item h3 {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  .tl-item .date {
+    font-size: 10px;
+  }
+  .tl-item .role {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .tl-item .stack .chip {
+    font-size: 9px;
+    padding: 3px 7px;
+  }
+
+  /* Education */
+  .edu-card {
+    padding: 16px 16px 18px;
+  }
+  .edu-card h4 {
+    font-size: 16px;
+  }
+  .edu-card .badge {
+    top: 12px;
+    right: 12px;
+  }
+
+  /* Award */
+  .award {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px;
+  }
+  .award .title {
+    font-size: 16px;
+  }
+  .award .yr {
+    font-size: 18px;
+  }
+
+  /* Contact */
+  .contact-main {
+    padding: 26px 18px;
+  }
+  .cta-row {
+    gap: 8px;
+  }
+  .cta {
+    padding: 11px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .contact-list {
+    padding: 16px 14px;
+    font-size: 11.5px;
+  }
+  .contact-list .row {
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .contact-list .l {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    text-align: left;
+    letter-spacing: 0.14em;
+  }
+
+  /* Panel corner cuts — shrink so they read on small panels */
+  .panel::before,
+  .panel::after,
+  .panel > .cut-br,
+  .panel > .cut-bl {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Visual noise: reduce scanline + flicker intensity on mobile */
+  .scanlines {
+    opacity: 0.4;
+  }
+  .crt-flicker {
+    display: none;
+  }
+}
+
+/* Small mobile — tighten further */
+@media (max-width: 420px) {
+  /* Keep only dot + SYS.CV + handle in chrome-top */
+  .chrome-top .left > *:nth-child(n + 5) {
+    display: none;
+  }
+  .ident h1 {
+    font-size: clamp(40px, 11vw, 56px);
+  }
+  .contact-list .row {
+    grid-template-columns: 60px 1fr;
+  }
+  .contact-list .v {
+    word-break: break-word;
+  }
+  .tl-item .stack {
+    gap: 5px;
   }
 }

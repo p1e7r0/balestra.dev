@@ -1,4 +1,4 @@
-import { domains, locales, stackLanguages } from "@/data/cv";
+import { domains, locales, stackItems } from "@/data/cv";
 import { GlitchHeading } from "./GlitchHeading";
 
 function pad(value: number) {
@@ -14,7 +14,7 @@ export function Skills() {
             Runtime <span className="g">stack_</span>
           </GlitchHeading>
         </h2>
-        <span className="sub">// LANG.COUNT=12 — FLUENCY ESTIMATED</span>
+        <span className="sub">// STACK.COUNT={pad(stackItems.length)} — FLUENCY ESTIMATED</span>
       </div>
 
       <div className="skills-grid">
@@ -23,7 +23,7 @@ export function Skills() {
           <span className="cut-bl" />
           <div className="panel-head">
             <span>
-              <span className="id">◉</span> PKG.LANGUAGES
+              <span className="id">◉</span> PKG.STACK
             </span>
             <span className="tags">
               <span>sorted / fluency</span>
@@ -31,20 +31,20 @@ export function Skills() {
           </div>
           <div className="panel-body" style={{ padding: 0 }}>
             <div className="stack-list">
-              {stackLanguages.map((language, index) => (
-                <div key={language.name} className="row scan-on-hover">
+              {stackItems.map((item, index) => (
+                <div key={item.name} className="row scan-on-hover">
                   <span className="id">{pad(index)}</span>
-                  <span className="name">{language.name}</span>
+                  <span className="name">{item.name}</span>
                   <div className="meter">
                     <span
                       style={
                         {
-                          ["--w" as string]: `${language.percent}%`,
+                          ["--w" as string]: `${item.percent}%`,
                         } as React.CSSProperties
                       }
                     />
                   </div>
-                  <span className="pct">{language.percent}%</span>
+                  <span className="pct">{item.percent}%</span>
                 </div>
               ))}
             </div>
