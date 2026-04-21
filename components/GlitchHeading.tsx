@@ -1,31 +1,28 @@
 "use client";
 
-import { useCallback, useEffect, useRef, type ReactNode } from "react";
+import { type ReactNode, useRef } from "react";
 
 const DECRYPT_CHARS = "!<>-_\\/[]{}—=+*^?#________";
 
 type Props = {
-  children: ReactNode;
-  as?: "h1" | "h2" | "h3" | "span";
+  as?: "h1" | "h2" | "h3" | "span" | "a" | "div";
   className?: string;
+  children: ReactNode;
+  style?: React.CSSProperties;
+  href?: string;
 };
 
-export default function GlitchHeading({ children, as = "span", className }: Props) {
+export function GlitchHeading({ as: Tag = "span", children, className, style, href }: Props) {
   const ref = useRef<HTMLElement | null>(null);
-  const originalRef = useRef<string>("");
-  const scramblingRef = useRef<boolean>(false);
 
-  useEffect(() => {
-    if (ref.current) originalRef.current = ref.current.innerHTML;
-  });
-
-  const onMouseEnter = useCallback(() => {
+  const handleMouseEnter = () => {
     const element = ref.current;
-    if (!element || scramblingRef.current) return;
-    const original = element.innerHTML;
+    if (!element) return;
+    if (element.dataset.scrambling === "1") return;
+
+    const originalHtml = element.innerHTML;
     const text = element.textContent ?? "";
-    originalRef.current = original;
-    scramblingRef.current = true;
+    element.dataset.scrambling = "1";
 
     let frame = 0;
     const interval = window.setInterval(() => {
@@ -44,21 +41,26 @@ export default function GlitchHeading({ children, as = "span", className }: Prop
       frame++;
       if (done === text.length) {
         window.clearInterval(interval);
-        element.innerHTML = originalRef.current;
-        scramblingRef.current = false;
+        element.innerHTML = originalHtml;
+        delete element.dataset.scrambling;
       }
     }, 35);
-  }, []);
+  };
 
-  const Tag = as;
-  return (
-    <Tag
-      ref={ref as React.RefObject<HTMLHeadingElement & HTMLSpanElement>}
-      className={className}
-      data-glitch=""
-      onMouseEnter={onMouseEnter}
-    >
-      {children}
-    </Tag>
-  );
+  const commonProps = {
+    ref: ref as React.Ref<never>,
+    className,
+    style,
+    "data-glitch": true,
+    onMouseEnter: handleMouseEnter,
+  } as Record<string, unknown>;
+
+  if (Tag === "a") {
+    return (
+      <a {...(commonProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)} href={href}>
+        {children}
+      </a>
+    );
+  }
+  return <Tag {...(commonProps as React.HTMLAttributes<HTMLElement>)}>{children}</Tag>;
 }

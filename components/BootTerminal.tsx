@@ -3,20 +3,16 @@
 import { useEffect, useRef } from "react";
 import { bootLines } from "@/data/cv";
 
-export default function BootTerminal() {
-  const terminalRef = useRef<HTMLDivElement>(null);
+export function BootTerminal() {
+  const terminalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const terminal = terminalRef.current;
     if (!terminal) return;
+
     let cancelled = false;
 
-    const wait = (ms: number) =>
-      new Promise<void>((resolve) => {
-        window.setTimeout(resolve, ms);
-      });
-
-    (async () => {
+    const runTypewriter = async () => {
       terminal.innerHTML = "";
       for (const line of bootLines) {
         if (cancelled) return;
@@ -24,7 +20,7 @@ export default function BootTerminal() {
         element.className = "line";
         element.innerHTML = line.html;
         terminal.appendChild(element);
-        const bar = element.querySelector<HTMLSpanElement>(".bar span");
+        const bar = element.querySelector<HTMLElement>(".bar span");
         if (bar) {
           bar.style.transform = "scaleX(0)";
           bar.style.transition = "transform .9s ease";
@@ -33,9 +29,11 @@ export default function BootTerminal() {
           });
         }
         terminal.scrollTop = terminal.scrollHeight;
-        await wait(line.delay);
+        await new Promise((resolve) => window.setTimeout(resolve, line.delay));
       }
-    })();
+    };
+
+    void runTypewriter();
 
     return () => {
       cancelled = true;
@@ -48,7 +46,7 @@ export default function BootTerminal() {
       <span className="cut-bl" />
       <div className="panel-head">
         <span>
-          <span className="id">◉</span> TERM.01 // BOOT.SEQUENCE
+          <span className="id">◉</span> {"TERM.01 // BOOT.SEQUENCE"}
         </span>
         <span className="tags">
           <span>PID 0x1991</span>

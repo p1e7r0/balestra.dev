@@ -1,70 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Backgrounds from "./Backgrounds";
-import ChromeTop from "./ChromeTop";
-import Contact from "./Contact";
-import Education from "./Education";
-import Experience from "./Experience";
-import Footer from "./Footer";
-import Hero from "./Hero";
-import Sidebar from "./Sidebar";
-import Skills from "./Skills";
-import { navKeyMap, navLinks } from "@/data/cv";
+import { useEffect } from "react";
+import { Backgrounds } from "./Backgrounds";
+import { ChromeTop } from "./ChromeTop";
+import { Contact } from "./Contact";
+import { Education } from "./Education";
+import { Experience } from "./Experience";
+import { Footer } from "./Footer";
+import { Hero } from "./Hero";
+import { Sidebar } from "./Sidebar";
+import { Skills } from "./Skills";
 
-export default function CVPage() {
-  const [activeId, setActiveId] = useState<string>(navLinks[0]?.id ?? "hero");
-
+function useRevealOnScroll() {
   useEffect(() => {
-    const revealObserver = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("in");
-        });
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+          }
+        }
       },
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
-    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
-      revealObserver.observe(element);
-    });
+    for (const element of document.querySelectorAll<HTMLElement>(".reveal")) {
+      observer.observe(element);
+    }
+    return () => observer.disconnect();
+  }, []);
+}
 
-    const sections = navLinks
-      .map((link) => document.getElementById(link.id))
-      .filter((element): element is HTMLElement => element !== null);
-
-    const navObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        });
-      },
-      { rootMargin: "-40% 0px -50% 0px" }
-    );
-    sections.forEach((section) => navObserver.observe(section));
-
-    const onKeyDown = (event: KeyboardEvent) => {
+function useJumpKeys() {
+  useEffect(() => {
+    const sectionByKey: Record<string, string> = {
+      g: "hero",
+      s: "skills",
+      e: "experience",
+      d: "education",
+      c: "contact",
+    };
+    const handler = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
-      const id = navKeyMap[event.key.toLowerCase()];
-      if (id) {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      const id = sectionByKey[event.key.toLowerCase()];
+      if (!id) return;
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      revealObserver.disconnect();
-      navObserver.disconnect();
-      document.removeEventListener("keydown", onKeyDown);
-    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, []);
+}
+
+export function CVPage() {
+  useRevealOnScroll();
+  useJumpKeys();
 
   return (
     <>
       <Backgrounds />
       <div className="frame">
         <ChromeTop />
-        <Sidebar activeId={activeId} />
+        <Sidebar />
         <main>
           <Hero />
           <Skills />

@@ -1,13 +1,13 @@
 import { identity } from "@/data/cv";
 
-export default function ChromeTop() {
+export function ChromeTop() {
   return (
     <div className="chrome-top">
       <div className="left">
         <span className="dot" />
         <b>SYS.CV</b>
         <span className="sep">//</span>
-        <span>BALESTRA.P</span>
+        <span>{identity.handle}</span>
         <span className="sep">//</span>
         <span>v4.26.0</span>
       </div>
@@ -20,10 +20,10 @@ export default function ChromeTop() {
           LAT <b>7ms</b>
         </span>
         <span className="sep">//</span>
-        <span>{identity.coords}</span>
+        <span id="coord">{identity.coordinates}</span>
         <span className="sep">//</span>
         <span>
-          LOC <b>{identity.loc}</b>
+          LOC <b>{identity.locationCode}</b>
         </span>
       </div>
     </div>

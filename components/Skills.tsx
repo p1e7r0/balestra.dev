@@ -1,18 +1,24 @@
-import { domains, locales, skills } from "@/data/cv";
-import GlitchHeading from "./GlitchHeading";
+import { domains, locales, stackLanguages } from "@/data/cv";
+import { GlitchHeading } from "./GlitchHeading";
 
-export default function Skills() {
+function pad(value: number) {
+  return String(value).padStart(2, "0");
+}
+
+export function Skills() {
   return (
     <section className="hud" id="skills" data-ix="// 01 — STACK.PROFILE">
-      <div className="section-head reveal" data-reveal="">
+      <div className="section-head reveal">
         <h2>
-          <GlitchHeading as="span">Runtime stack_</GlitchHeading>
+          <GlitchHeading as="span">
+            Runtime <span className="g">stack_</span>
+          </GlitchHeading>
         </h2>
         <span className="sub">// LANG.COUNT=12 — FLUENCY ESTIMATED</span>
       </div>
 
       <div className="skills-grid">
-        <div className="panel reveal" data-reveal="">
+        <div className="panel reveal">
           <span className="cut-br" />
           <span className="cut-bl" />
           <div className="panel-head">
@@ -25,14 +31,20 @@ export default function Skills() {
           </div>
           <div className="panel-body" style={{ padding: 0 }}>
             <div className="stack-list">
-              {skills.map((skill) => (
-                <div className="row scan-on-hover" key={skill.id}>
-                  <span className="id">{skill.id}</span>
-                  <span className="name">{skill.name}</span>
+              {stackLanguages.map((language, index) => (
+                <div key={language.name} className="row scan-on-hover">
+                  <span className="id">{pad(index)}</span>
+                  <span className="name">{language.name}</span>
                   <div className="meter">
-                    <span style={{ ["--w" as string]: `${skill.pct}%` } as React.CSSProperties} />
+                    <span
+                      style={
+                        {
+                          ["--w" as string]: `${language.percent}%`,
+                        } as React.CSSProperties
+                      }
+                    />
                   </div>
-                  <span className="pct">{skill.pct}%</span>
+                  <span className="pct">{language.percent}%</span>
                 </div>
               ))}
             </div>
@@ -40,7 +52,7 @@ export default function Skills() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div className="panel reveal" data-reveal="">
+          <div className="panel reveal">
             <span className="cut-br" />
             <span className="cut-bl" />
             <div className="panel-head">
@@ -53,16 +65,16 @@ export default function Skills() {
             </div>
             <div className="domain-grid">
               {domains.map((domain) => (
-                <div className="domain" key={domain.name}>
-                  <span className="ico">{domain.ico}</span>
-                  <h4>{domain.name}</h4>
-                  <p>{domain.body}</p>
+                <div key={domain.title} className="domain">
+                  <span className="ico">{domain.icon}</span>
+                  <h4>{domain.title}</h4>
+                  <p>{domain.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="panel reveal" data-reveal="">
+          <div className="panel reveal">
             <span className="cut-br" />
             <span className="cut-bl" />
             <div className="panel-head">
@@ -75,12 +87,12 @@ export default function Skills() {
             </div>
             <div className="lang-block">
               {locales.map((locale) => (
-                <div className="lang-row" key={locale.language}>
+                <div key={locale.language} className="lang-row">
                   <span>{locale.language}</span>
                   <span className="lvl">{locale.level}</span>
                   <div className="dots">
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <i key={index} className={index < locale.dots ? "on" : undefined} />
+                    {Array.from({ length: locale.total }).map((_, dotIndex) => (
+                      <i key={dotIndex} className={dotIndex < locale.filled ? "on" : ""} />
                     ))}
                   </div>
                 </div>

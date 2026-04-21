@@ -1,14 +1,13 @@
 import { identity } from "@/data/cv";
+import { GlitchHeading } from "./GlitchHeading";
 
-export default function Contact() {
+export function Contact() {
   return (
     <section className="hud" id="contact" data-ix="// 04 — ESTABLISH.LINK">
       <div className="contact-grid">
-        <div className="panel contact-main reveal" data-reveal="">
+        <div className="panel contact-main reveal">
           <span className="cut-br" />
           <span className="cut-bl" />
-          <div className="bracket-deco tl">⌐</div>
-          <div className="bracket-deco br">¬</div>
           <div
             style={{
               fontSize: 10,
@@ -23,30 +22,30 @@ export default function Contact() {
             Open<span className="g">.</span>channel<span className="g">_</span>
           </h2>
           <p className="sig">
-            Consulting, engineering work, R&amp;D in mobile / CV / robotics — inbox is monitored from
-            Bigorio, CH. Keys exchanged on request.
+            Consulting, engineering work, R&amp;D in mobile / CV / robotics — inbox is monitored
+            from Semetina, CH. Keys exchanged on request.
           </p>
 
           <div className="cta-row">
-            <a className="cta primary" href={`mailto:${identity.email}`} data-glitch="">
+            <GlitchHeading as="a" className="cta primary" href={`mailto:${identity.email}`}>
               <span>▸</span>
               <span>mail // {identity.email}</span>
               <span className="k">[M]</span>
-            </a>
-            <a className="cta" href={`tel:${identity.phoneDial}`} data-glitch="">
+            </GlitchHeading>
+            <GlitchHeading as="a" className="cta" href={`tel:${identity.phoneTel}`}>
               <span>▸</span>
               <span>dial // {identity.phone}</span>
               <span className="k">[P]</span>
-            </a>
-            <a className="cta" href="/cv.pdf" download data-glitch="">
+            </GlitchHeading>
+            <GlitchHeading as="a" className="cta" href="/cv.pdf">
               <span>▸</span>
               <span>download // cv.pdf</span>
               <span className="k">[D]</span>
-            </a>
+            </GlitchHeading>
           </div>
         </div>
 
-        <div className="panel reveal" data-reveal="">
+        <div className="panel reveal">
           <span className="cut-br" />
           <span className="cut-bl" />
           <div className="panel-head">
@@ -73,8 +72,8 @@ export default function Contact() {
               <span className="v">{identity.phone}</span>
             </div>
             <div className="row">
-              <span className="l">SKYPE</span>
-              <span className="v">{identity.skype}</span>
+              <span className="l">GITHUB</span>
+              <span className="v">{identity.github}</span>
             </div>
             <div className="row">
               <span className="l">NODE</span>
@@ -82,11 +81,11 @@ export default function Contact() {
             </div>
             <div className="row">
               <span className="l">NATION</span>
-              <span className="v">{identity.nationality}</span>
+              <span className="v">{identity.nation}</span>
             </div>
             <div className="row">
               <span className="l">DOB</span>
-              <span className="v">{identity.dob}</span>
+              <span className="v">{identity.dateOfBirth}</span>
             </div>
             <div className="row">
               <span className="l">REFS</span>
