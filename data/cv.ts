@@ -37,7 +37,7 @@ export const identity = {
   handle: "BALESTRA.DEV",
   title: "Software Engineer",
   scope: "Microfrontend & Microservices Architecture in Healthcare Platforms",
-  coordinates: "46.0488°N / 8.9417°E",
+  coordinates: "32°10'15.2\"N 110°51'18.7\"W",
   locationCode: "CH-TI",
   domicile: "Sementina",
   timezone: "CET+00",
@@ -90,9 +90,9 @@ export const domains: DomainCard[] = [
   },
   {
     icon: "◈",
-    title: "Computer Vision & Robotics",
+    title: "Full-stack Web",
     description:
-      "R&D roots in image analysis, AR, and machine vision — from intelligent video surveillance to closed-loop vision driving a robotic welding torch. Hands-on with C/C++, real-time actuation, and calibration pipelines.",
+      "React + TypeScript on the front, Java and Spring Boot on the back. REST API design, authentication, behavior testing for legacy integration, continuous delivery.",
   },
   {
     icon: "◇",
@@ -233,6 +233,14 @@ export const education: EducationCard[] = [
     institution: "SUPSI // DTI — Manno, Switzerland",
     detail: "Software Engineering",
   },
+
+  {
+    badge: "CRS",
+    dateRange: "[2021.03]",
+    title: "Spring Boot Training",
+    institution: "42talents GmbH",
+    detail: "Professional training — Spring Boot",
+  },
   {
     badge: "AFC",
     dateRange: "[2006.09 → 2010.06]",
@@ -240,13 +248,6 @@ export const education: EducationCard[] = [
     institution: "Scuola d'Arte e Mestieri — Bellinzona, Switzerland",
     detail: "Federal Automation Technician Certificate",
     // span: true,
-  },
-  {
-    badge: "CRS",
-    dateRange: "[2021.03]",
-    title: "Spring Boot Training",
-    institution: "42talents GmbH",
-    detail: "Professional training — Spring Boot",
   },
   {
     badge: "CERT",
