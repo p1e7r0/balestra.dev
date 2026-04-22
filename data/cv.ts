@@ -219,21 +219,13 @@ export const experience: ExperienceEntry[] = [
 ];
 
 export const education: EducationCard[] = [
-  // {
-  //   badge: "M.Sc.",
-  //   dateRange: "[2014.09]",
-  //   title: "M.Sc. Engineering — ICT",
-  //   institution: "SUPSI // DTI — Manno, Switzerland",
-  //   detail: "Info & Communication Technologies",
-  // },
   {
-    badge: "B.Sc.",
-    dateRange: "[2011.09 → 2014.06]",
-    title: "B.Sc. Ingegneria Informatica",
+    badge: "PENDING",
+    dateRange: "[2014.09]",
+    title: "M.Sc. Engineering — ICT",
     institution: "SUPSI // DTI — Manno, Switzerland",
-    detail: "Software Engineering",
+    detail: "Master of Science in Engineering (MSE)",
   },
-
   {
     badge: "CRS",
     dateRange: "[2021.03]",
@@ -242,27 +234,33 @@ export const education: EducationCard[] = [
     detail: "Professional training — Spring Boot",
   },
   {
-    badge: "AFC",
-    dateRange: "[2006.09 → 2010.06]",
-    title: "Operatore in Automazione — AFC",
-    institution: "Scuola d'Arte e Mestieri — Bellinzona, Switzerland",
-    detail: "Federal Automation Technician Certificate",
-    // span: true,
-  },
-  {
     badge: "CERT",
     dateRange: "[2015.04 → 2015.07]",
     title: "First Certificate in English",
     institution: "English Language Center — Vancouver, CA",
     detail: "Level B2 // Cambridge FCE",
   },
-  // {
-  //   badge: "MPT",
-  //   dateRange: "[2010.09 → 2011.06]",
-  //   title: "Maturità Professionale Tecnica",
-  //   institution: "CPQ — Trevano, Switzerland",
-  //   detail: "Technical Vocational Maturity",
-  // },
+  {
+    badge: "B.Sc.",
+    dateRange: "[2011.09 → 2014.06]",
+    title: "B.Sc. Ingegneria Informatica",
+    institution: "SUPSI // DTI — Manno, Switzerland",
+    detail: "Bachelor of Science in Computer Science (BSc)",
+  },
+  {
+    badge: "MPT",
+    dateRange: "[2010.09 → 2011.06]",
+    title: "Maturità Professionale Tecnica",
+    institution: "CPQ — Trevano, Switzerland",
+    detail: "Technical Vocational Maturity",
+  },
+  {
+    badge: "AFC",
+    dateRange: "[2006.09 → 2010.06]",
+    title: "Operatore in Automazione — AFC",
+    institution: "Scuola d'Arte e Mestieri — Bellinzona, Switzerland",
+    detail: "Federal Automation Technician Certificate",
+  },
 ];
 
 export const award = {
