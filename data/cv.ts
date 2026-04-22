@@ -221,7 +221,7 @@ export const experience: ExperienceEntry[] = [
 export const education: EducationCard[] = [
   {
     badge: "PENDING",
-    dateRange: "[2014.09]",
+    dateRange: "[2016.11]",
     title: "M.Sc. Engineering — ICT",
     institution: "SUPSI // DTI — Manno, Switzerland",
     detail: "Master of Science in Engineering (MSE)",
