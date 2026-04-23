@@ -22,7 +22,7 @@ export function Contact() {
             Open<span className="g">.</span>channel<span className="g">_</span>
           </h2>
           <p className="sig">
-            Consulting and engineering work on healthcare platforms, microfrontend / microservices
+            Consulting and engineering work on healthcare platforms, microfrontends / microservices
             architecture.
           </p>
 

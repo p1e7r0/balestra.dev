@@ -131,7 +131,7 @@ export const experience: ExperienceEntry[] = [
     dateRange: "[2019.01 → NOW]",
     sideLabel: "● ACTIVE",
     sideLabelColor: "warn",
-    title: "Software Engineer",
+    title: "Senior Software Engineer",
     company: "EOC — Ente Ospedaliero Cantonale",
     address: "Ticino, Switzerland",
     role: "Full-stack engineering inside a microservices / microfrontends platform. TypeScript + React on the front; Java + Spring Boot services on the back. Production healthcare systems, distributed architecture, continuous delivery.",
@@ -295,7 +295,7 @@ export const kpis = [
 
 export const bootLines: Array<{ html: string; delay: number }> = [
   {
-    html: '<span class="prompt">boot</span> <span class="dim">--profile=balestra.p --mode=cv</span>',
+    html: '<span class="prompt">boot</span> <span class="dim">--profile=p1e7r0 --mode=cv</span>',
     delay: 120,
   },
   {
