@@ -176,7 +176,7 @@ export const experience: ExperienceEntry[] = [
   {
     dateRange: "[2015.10 → 2017.08]",
     sideLabel: "~2 YR",
-    title: "Software Engineer / Project Manager",
+    title: "Software Engineer",
     company: "Goodcode GmbH",
     address: "Agno, Switzerland",
     role: "Led development on mobile, augmented-reality, and computer-vision projects. Planned sprints, owned architecture, and wrote production code across Java, C/C++, and JS/HTML/CSS. Full-stack mobile delivery with Java services and release coordination.",
@@ -187,7 +187,7 @@ export const experience: ExperienceEntry[] = [
       { label: "JavaScript" },
       { label: "HTML" },
       { label: "CSS" },
-      { label: "AR", alt: true },
+      { label: "AR / VR", alt: true },
       { label: "Computer Vision", alt: true },
       { label: "PM", alt: true },
     ],
@@ -267,7 +267,7 @@ export const award = {
   label: "◆ HONOR //\nSWEN.2014",
   title: "Premio SWEN 2014 — Software Engineering Network",
   subtitle:
-    'Thesis: "Analisi di immagini per ambienti di videosorveglianza intelligenti" — Università della Svizzera Italiana (USI), Lugano',
+    'Thesis: "Analisi di immagini per ambienti di videosorveglianza intelligenti" — Scuola Universitaria Professionale della Svizzera Italiana (SUPSI), Lugano',
   year: "2015",
 };
 
